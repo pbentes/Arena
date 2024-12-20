@@ -8,6 +8,7 @@ typedef struct Arena {
     void* buffer;
     void* index;
     size_t size;
+    Arena* next;
 } Arena;
 
 Arena* arenaCreate(size_t size = ARENA_SIZE);
@@ -33,6 +34,7 @@ void arenaDestroy(Arena* arena);
             throw std::bad_alloc();
         }
         arena->index = arena->buffer;
+        arena->next = nullptr;
 
         return arena;
     }
@@ -41,17 +43,25 @@ void arenaDestroy(Arena* arena);
         void* ret = arena->index;
 
         arena->index = static_cast<char*>(arena->index) + size;
-        if (arena->index > static_cast<char*>(arena->buffer) + arena->size)
-            return nullptr;
+        if (arena->index > static_cast<char*>(arena->buffer) + arena->size) {
+            arena->next = arenaCreate(arena->size);
+            return arenaAlloc(arena->next, size);
+        }
 
         return ret;
     }
 
     void arenaClear(Arena* arena) {
         arena->index = arena->buffer;
+
+        if(arena->next)
+            arenaDestroy(arena->next);
     }
 
     void arenaDestroy(Arena* arena) {
+        if(arena->next)
+            arenaDestroy(arena->next);
+
         if(arena) {
             free(arena->buffer);
             free(arena);

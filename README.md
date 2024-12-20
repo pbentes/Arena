@@ -1,6 +1,6 @@
 [![Build](https://github.com/pbentes/Arena/actions/workflows/build.yml/badge.svg)](https://github.com/pbentes/Arena/actions/workflows/build.yml)
 
-# C-Like C++ implementation of a memory arena
+This is a very simple, header only, C-Like C++ implementation of a memory arena
 
 Work in progress. Its not fancy.
 
@@ -8,9 +8,6 @@ Work in progress. Its not fancy.
 
 - 🟩 Create Memory Arena
 - 🟩 Allocate
-- 🟨 Clear
+- 🟩 Clear
 - 🟩 Destroy
-- 🟥 Free
-- 🟥 Add a free list
-- 🟥 Add chaining
-- 🟥 Add debug utilities
+- 🟩 Add chaining
