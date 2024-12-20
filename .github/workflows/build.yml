@@ -6,6 +6,13 @@ on:
     paths-ignore:
       - 'Docs/**'
       - '**.md'
+    paths:
+      - '**/*.cpp'
+      - '**/*.c'
+      - '**/*.hpp'
+      - '**/*.h'
+      - '**/CMakeLists.txt'
+      - '**/*.cmake'
   pull_request:
     branches: [ main ]
     paths-ignore:
