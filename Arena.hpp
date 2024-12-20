@@ -21,7 +21,7 @@ void arenaDestroy(Arena* arena);
     #include <new>
 
     Arena* arenaCreate(size_t size) {
-        Arena* arena = (Arena*)malloc(sizeof(Arena));
+        Arena* arena = static_cast<Arena*>(malloc(sizeof(Arena)));
         if (!arena) {
             throw std::bad_alloc();
         }
@@ -40,8 +40,8 @@ void arenaDestroy(Arena* arena);
     void* arenaAlloc(Arena* arena, unsigned int size) {
         void* ret = arena->index;
 
-        arena->index = (char*)arena->index + size;
-        if (arena->index > (char*)arena->buffer + arena->size)
+        arena->index = static_cast<char*>(arena->index) + size;
+        if (arena->index > static_cast<char*>(arena->buffer) + arena->size)
             return nullptr;
 
         return ret;

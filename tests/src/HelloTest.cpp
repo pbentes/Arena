@@ -9,16 +9,16 @@ TEST(Arena, Create) {
 
 TEST(Arena, Alloc) {
     Arena* arena = arenaCreate();
-    int* i = (int*)arenaAlloc(arena, sizeof(int));
+    int* i = static_cast<int*>(arenaAlloc(arena, sizeof(int)));
     ASSERT_NE(i, nullptr);
 }
 
 TEST(Arena, Clear) {
     Arena* arena = arenaCreate();
     
-    int* i = (int*)arenaAlloc(arena, sizeof(int));
+    int* i = static_cast<int*>(arenaAlloc(arena, sizeof(int)));
     arenaClear(arena);
-    int* d = (int*)arenaAlloc(arena, sizeof(int));
+    int* d = static_cast<int*>(arenaAlloc(arena, sizeof(int)));
 
     ASSERT_EQ(i, d);
 }
