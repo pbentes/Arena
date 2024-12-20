@@ -3,9 +3,6 @@ name: Build
 on:
   push:
     branches: [ main ]
-    paths-ignore:
-      - 'Docs/**'
-      - '**.md'
     paths:
       - '**/*.cpp'
       - '**/*.c'
@@ -15,9 +12,6 @@ on:
       - '**/*.cmake'
   pull_request:
     branches: [ main ]
-    paths-ignore:
-      - 'Docs/**'
-      - '**.md'
 
 jobs:
   linux-clang:
