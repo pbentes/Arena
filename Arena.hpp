@@ -44,7 +44,8 @@ void arenaDestroy(Arena* arena);
 
         arena->index = static_cast<char*>(arena->index) + size;
         if (arena->index > static_cast<char*>(arena->buffer) + arena->size) {
-            arena->next = arenaCreate(arena->size);
+            if (!arena->next)
+                arena->next = arenaCreate(arena->size);
             return arenaAlloc(arena->next, size);
         }
 
