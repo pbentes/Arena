@@ -2,8 +2,6 @@
 
 This is a very simple, header only, C-Like C++ implementation of a memory arena
 
-Work in progress. Its not fancy.
-
 ## Todo
 
 - 🟩 Create Memory Arena
