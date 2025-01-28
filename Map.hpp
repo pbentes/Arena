@@ -17,7 +17,7 @@ typedef struct Map {
     MapElement* buckets;
 } Map;
 
-Map* mapCreate(Arena* arena = nullptr);
+Map* mapCreate();
 void mapSet(Map* map, const char* key, void* value);
 void* mapGet(Map* map, const char* key);
 Map* mapClear(Map* map);
@@ -37,10 +37,8 @@ void mapDestroy(Map* map);
         return hash;
     }
 
-    Map* mapCreate(Arena* arena) {
-        if(arena == nullptr) {
-            arena = arenaCreate();
-        }
+    Map* mapCreate() {
+        Arena* arena = arenaCreate();
 
         Map* map = (Map*)arenaAlloc(arena, sizeof(Map));
         map->arena = arena;
