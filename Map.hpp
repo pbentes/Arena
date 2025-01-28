@@ -94,7 +94,7 @@ void mapDestroy(Map* map);
     Map* mapClear(Map* map) {
         Arena* arena = map->arena;
         arenaClear(arena);
-        return mapCreate(arena);
+        return mapCreate();
     }
 
     void mapDestroy(Map* map) {
