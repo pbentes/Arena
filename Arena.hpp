@@ -68,4 +68,4 @@ void arenaDestroy(Arena* arena);
             free(arena);
         }
     }
-#endif
+#endif //ARENA_IMPLEMENTATION
