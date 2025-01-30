@@ -18,8 +18,8 @@ typedef struct Map {
 } Map;
 
 Map* mapCreate();
-void mapSet(Map* map, const char* key, void* value);
-void* mapGet(Map* map, const char* key);
+void mapSet(Map* map, const unsigned char* key, void* value);
+void* mapGet(Map* map, const unsigned char* key);
 Map* mapClear(Map* map);
 void mapDestroy(Map* map);
 
