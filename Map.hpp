@@ -91,6 +91,35 @@ void mapDestroy(Map* map);
         return nullptr;
     }
 
+    void mapRemove(Map* map, const unsigned char* key) {
+        unsigned long hash = djb2(key);
+        unsigned long index = hash % MAP_BUCKETS;
+
+        MapElement* previous_element = nullptr;
+        MapElement* element = &map->buckets[index];
+        do {
+            if(strcmp((const char*)element->key, (const char*)key) == 0) {
+                if(element->next != nullptr) {
+                    *element = *(element->next);
+                    return;
+                } else {
+                    *element = MapElement {
+                        .key   = nullptr,
+                        .value = nullptr,
+                        .next  = nullptr,
+                    };
+
+                    if(previous_element == nullptr)
+                        return;
+
+                    previous_element->next = nullptr;
+                }
+            }
+            previous_element = element;
+            element = element->next;
+        } while(element->next != nullptr);
+    }
+
     Map* mapClear(Map* map) {
         Arena* arena = map->arena;
         arenaClear(arena);
