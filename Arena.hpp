@@ -2,7 +2,7 @@
 
 #include <cstddef>
 
-#define ARENA_SIZE 64000000
+#define ARENA_SIZE 2000000
 
 typedef struct Arena {
     void* buffer;
