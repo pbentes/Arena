@@ -3,6 +3,7 @@
 #include "Arena.hpp"
 #include <cstddef>
 #include <cstdlib>
+#include <cstring>
 
 typedef unsigned long long handle;
 
@@ -28,7 +29,8 @@ void handleStoreDestroy(HandleStore* handle_store);
     handle handleStoreAdd(HandleStore* handle_store, void* data) {
         handle index = ((char*)handle_store->arena->index - (char*)handle_store->arena->buffer) / handle_store->element_size;
 
-        arenaAlloc(handle_store->arena, handle_store->element_size);
+        void* arena_position = arenaAlloc(handle_store->arena, handle_store->element_size);
+        memcpy(arena_position, data, handle_store->element_size);
 
         return index;
     }
